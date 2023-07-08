@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "scripts": {
+    "postinstall": "husky install",
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint \"**/*.{vue,ts,js}\"",
+    "lint:fix": "eslint \"**/*.{vue,ts,js}\" --fix"
+  },
+  "dependencies": {
+    "@vueuse/core": "^9.13.0",
+    "core-js": "^3.29.1",
+    "vue": "^2.7.14",
+    "vue-router": "^3.6.5"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.38.2",
+    "@iconify/json": "^2.2.42",
+    "@vitejs/plugin-vue2": "^2.2.0",
+    "eslint": "^8.37.0",
+    "husky": "^8.0.3",
+    "typescript": "^5.0.3",
+    "unplugin-auto-import": "^0.15.2",
+    "unplugin-icons": "^0.16.1",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.2.1",
+    "vite-plugin-windicss": "^1.8.10",
+    "vue-template-compiler": "^2.7.14",
+    "vue-template-es2015-compiler": "^1.9.1"
+  }
+}
