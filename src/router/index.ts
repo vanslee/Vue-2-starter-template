@@ -1,32 +1,66 @@
 import Vue from 'vue'
 import type { RouteConfig } from 'vue-router'
 import VueRouter from 'vue-router'
-import Home from '@/views/Home.vue'
-import NotFound from '@/views/NotFound.vue'
+import { normalRoute } from './modules/normal'
+import { adminRoute } from './modules/admin'
+import settings from '@/config'
 
 Vue.use(VueRouter)
+export const constantRoutes: RouteConfig[] = [
+  {
+    path: '/login',
+    name: 'Login',
+    meta: {
+      title: '登录',
+      hidden: true,
+    },
+    component: () => import('@/views/login/index.vue'),
+  },
 
-export const routes: RouteConfig[] = [
   {
-    path: '/',
-    name: 'Home',
-    // NOTE: you can also apply meta information
-    // meta: {authRequired: false }
-    component: Home,
-    // NOTE: you can also lazy-load the component
-    // component: () => import("@/views/About.vue")
+    path: '/loading/:tk',
+    name: 'Loading',
+    meta: {
+      title: '加载',
+      hidden: true,
+    },
+    component: () => import('@/views/error-page/loading.vue'),
+    props: route => ({ query: route.query.tk }),
   },
   {
-    path: '/:path(.*)',
-    name: 'NotFound',
-    component: NotFound,
+    path: '/401',
+    name: '401',
+    meta: {
+      hidden: true,
+    },
+    component: () => import('@/views/error-page/401.vue'),
   },
+  {
+    path: '/404',
+    meta: {
+      hidden: true,
+    },
+    name: '404',
+    component: () => import('@/views/error-page/404.vue'),
+  },
+  // {
+  //   path: '*',
+  //   meta: {
+  //     requireAuth: false
+  //   },
+  //   component: () => import('@/views/error-page/404.vue')
+  // },
 ]
-
+const routes = [...constantRoutes, ...adminRoute, ...normalRoute]
 const router = new VueRouter({
-  base: '/',
-  mode: 'history',
+  base: settings.publicPath,
+  mode: settings.routerMode,
   routes,
 })
+const originalPush = VueRouter.prototype.push
+
+VueRouter.prototype.push = function push(location) {
+  return Promise.resolve(originalPush.call(this, location)).catch((err: any) => err)
+}
 
 export default router

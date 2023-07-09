@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "target": "esnext",
     "module": "esnext",
     "strict": true,
@@ -12,10 +13,13 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "@vueuse/core"
+      "@vueuse/core",
+      "node"
     ],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
     "lib": [
       "esnext",

@@ -9,6 +9,10 @@ declare module 'vue' {
   export interface GlobalComponents {
     ButtonPrimary: typeof import('./components/shared/ButtonPrimary.vue')['default']
     ButtonSecondary: typeof import('./components/shared/ButtonSecondary.vue')['default']
+    ElButton: typeof import('~icons/el/button')['default']
+    ElCheckbox: typeof import('~icons/el/checkbox')['default']
+    ElLink: typeof import('~icons/el/link')['default']
+    ElTag: typeof import('~icons/el/tag')['default']
     Feature: typeof import('./components/Feature.vue')['default']
     Features: typeof import('./components/Features.vue')['default']
     Heading1: typeof import('./components/shared/Heading1.vue')['default']
@@ -20,7 +24,11 @@ declare module 'vue' {
     MdiMoonWaningCrescent: typeof import('~icons/mdi/moon-waning-crescent')['default']
     MdiWhiteBalanceSunny: typeof import('~icons/mdi/white-balance-sunny')['default']
     Navbar: typeof import('./components/Navbar.vue')['default']
+    Preview: typeof import('./components/markdown/Preview.vue')['default']
+    Priview: typeof import('./components/markdown/Priview.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SubmitArticleDlg: typeof import('./components/dlg/SubmitArticleDlg.vue')['default']
+    TagInput: typeof import('./components/tag/TagInput.vue')['default']
   }
 }

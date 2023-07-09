@@ -1,0 +1,65 @@
+<script>
+import MarkDownCpt from '@/components/markdown/Preview.vue'
+export default {
+  components: {
+    MarkDownCpt,
+  },
+  props: {
+    article: {
+      type: Object,
+      required: true,
+      default: () => { },
+    },
+  },
+  data() {
+    return {
+      content: '',
+    }
+  },
+  computed: {},
+  created() { },
+  mounted() { },
+  methods: {
+    jumpToArticleDetails() {
+      this.$router.push({ name: 'Article', params: { id: this.article.id } })
+    },
+  },
+}
+</script>
+
+<template>
+  <div style="width: 100%; height: 100%" @click="jumpToArticleDetails">
+    <div style="display: flex; justify-content: space-between; flex-shrink: 0; align-items: center">
+      <div style="width: 15%; display: flex; align-items: center; flex-direction: column">
+        <img v-lazy="article.authorAvatar" style="width: 100%">
+        <i style="font-weight: 700; color: #e6a23c">{{ article.authorName }}</i>
+        <span style="font-size: 0.75rem; color: #909399">
+          分类:
+          <i v-for="(category, index) in article.categories" :key="`category${index}`">{{ category.name }}</i>
+        </span>
+        <span style="font-size: 0.75rem; color: #909399">
+          标签:
+          <i v-for="(tag, index) in article.tags" :key="`tag${index}`">{{ tag.name }}</i>
+        </span>
+      </div>
+      <div style="width: 50%; padding: 0 8vw; overflow: hidden">
+        <h3 style="color: #409eff; white-space: nowrap; text-overflow: ellipsis">
+          {{ article.articleTitle }}
+        </h3>
+        <MarkDownCpt :md-url="article.mdUrl" />
+      </div>
+      <div style="width: 35%">
+        <img
+          v-lazy="article.imgUrl"
+          style="width: 95%; height: 100%; border: 1px solid #909399; border-radius: 0; object-fit: fill"
+        >
+      </div>
+    </div>
+  </div>
+</template>
+
+  <style scoped>
+  .article_card_box {
+    cursor: pointer;
+  }
+  </style>
