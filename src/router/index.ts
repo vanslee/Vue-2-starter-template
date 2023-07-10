@@ -8,6 +8,11 @@ import settings from '@/config'
 Vue.use(VueRouter)
 export const constantRoutes: RouteConfig[] = [
   {
+    path: '/test',
+    name: 'Test',
+    component: () => import('@/views/test.vue'),
+  },
+  {
     path: '/login',
     name: 'Login',
     meta: {
