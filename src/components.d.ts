@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ButtonPrimary: typeof import('./components/shared/ButtonPrimary.vue')['default']
     ButtonSecondary: typeof import('./components/shared/ButtonSecondary.vue')['default']
+    Draw: typeof import('./components/draw/index.vue')['default']
     ElButton: typeof import('~icons/el/button')['default']
     ElCheckbox: typeof import('~icons/el/checkbox')['default']
     ElLink: typeof import('~icons/el/link')['default']
@@ -23,6 +24,7 @@ declare module 'vue' {
     MdiGithub: typeof import('~icons/mdi/github')['default']
     MdiMoonWaningCrescent: typeof import('~icons/mdi/moon-waning-crescent')['default']
     MdiWhiteBalanceSunny: typeof import('~icons/mdi/white-balance-sunny')['default']
+    Menu: typeof import('./components/menu/Menu.vue')['default']
     Navbar: typeof import('./components/Navbar.vue')['default']
     Preview: typeof import('./components/markdown/Preview.vue')['default']
     Priview: typeof import('./components/markdown/Priview.vue')['default']

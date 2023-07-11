@@ -10,7 +10,7 @@ export const constantRoutes: RouteConfig[] = [
   {
     path: '/test',
     name: 'Test',
-    component: () => import('@/views/test.vue'),
+    component: () => import('@/components/menu/Menu.vue'),
   },
   {
     path: '/login',
