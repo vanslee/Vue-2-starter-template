@@ -1,7 +1,7 @@
 <script>
 import { mapActions, mapState } from 'pinia'
-import CommentItemVue from './CommentItem.vue'
-import CommentVue from './Comment.vue'
+import CommentItemVue from './components/CommentItem.vue'
+import CommentVue from './components/Comment.vue'
 import { useUserStore } from '@/stores/user'
 import { useCommentStore } from '@/stores/comments'
 

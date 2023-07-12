@@ -44,47 +44,50 @@ export default {
 </script>
 
 <template>
-  <div
-    style="display: flex; justify-content: space-between; align-items: center"
-  >
-    <div class="hidden-xs-only">
-      <img
-        v-if="hasLogin"
-        v-lazy="user.avatarImgUrl"
-        style="width: 6vw"
-      >
-      <img
-        v-else
-        src="https://lidengxiang.top/default.jpg"
-        style="width: 6vw"
-      >
+  <div>
+    <el-divider><i class="el-icon-s-comment"></i></el-divider>
+    <div
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <div class="hidden-xs-only">
+        <img
+          v-if="hasLogin"
+          v-lazy="user.avatarImgUrl"
+          style="width: 6vw"
+        >
+        <img
+          v-else
+          src="https://lidengxiang.top/default.jpg"
+          style="width: 6vw"
+        >
+      </div>
+      <div style="flex-grow: 8; flex-shrink: 1; padding: 0 2vw">
+        <el-input
+          v-model="commentParam.content"
+          type="textarea"
+          placeholder="看完啦，登录分享一下吧"
+          :disabled="!hasLogin"
+        />
+      </div>
+      <div style="flex-grow: 1; flex-shrink: 1">
+        <el-button
+          v-if="hasLogin"
+          :loading="isLoading"
+          style="height: 10vh"
+          @click="submit"
+        >
+          发表评论
+        </el-button>
+        <el-button
+        class="hidden-xs-only"
+          v-else
+          style="height: 10vh"
+          disabled
+        >
+          请先登录
+        </el-button>
+      </div>
     </div>
-    <div style="flex-grow: 8; flex-shrink: 1; padding: 0 2vw">
-      <el-input
-        v-model="commentParam.content"
-        type="textarea"
-        placeholder="机会是留给有准备的人"
-        :disabled="!hasLogin"
-      />
-    </div>
-    <div style="flex-grow: 1; flex-shrink: 1">
-      <el-button
-        v-if="hasLogin"
-        :loading="isLoading"
-        style="height: 10vh"
-        @click="submit"
-      >
-        发表评论
-      </el-button>
-      <el-button
-        v-else
-        style="height: 10vh"
-        disabled
-      >
-        请先登录
-      </el-button>
-    </div>
-
     <!-- <el-row type="flex" justify="space-between" align="middle">
 
       <el-col :span="3" class="hidden-sm-and-up">

@@ -37,12 +37,12 @@ export default {
 
 <template>
   <div>
-    <el-menu :mode="mode" :collapse-transition="false" default-active="1" class="el-menu-vertical-demo" :collapse="state.isCollapse" @open="handleOpen" @close="handleClose">
-      <el-menu-item v-for="(menu, index1) in data" :key="menu.title" :index="JSON.stringify(index1)">
+    <el-menu :router="true" :mode="mode" :collapse-transition="false" default-active="1" class="el-menu-vertical-demo" :collapse="state.isCollapse" @open="handleOpen" @close="handleClose">
+      <el-menu-item v-for="menu in data" :key="menu.title" :index="menu.path">
         <i :class="menu.icon" />
         <span>{{ menu.title }}</span>
         <el-menu-item-group v-if="menu.children?.length > 0">
-          <el-menu-item v-for="(sub, index2) in menu.children" :key="sub.title" :index="`${JSON.stringify(index1)}-${JSON.stringify(index2)}`">
+          <el-menu-item v-for="sub in menu.children" :key="sub.title">
             <template #title>
               <i :class="menu.icon" />
               <span>{{ menu.title }}</span>

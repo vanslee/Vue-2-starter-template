@@ -26,6 +26,7 @@ declare module 'vue' {
     MdiWhiteBalanceSunny: typeof import('~icons/mdi/white-balance-sunny')['default']
     Menu: typeof import('./components/menu/Menu.vue')['default']
     Navbar: typeof import('./components/Navbar.vue')['default']
+    Outline: typeof import('./components/outline/index.vue')['default']
     Preview: typeof import('./components/markdown/Preview.vue')['default']
     Priview: typeof import('./components/markdown/Priview.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

@@ -19,10 +19,14 @@ export default {
   setup() {
     const state = reactive({
       drawer: false,
+      currentPage: '',
     })
     return {
       state,
     }
+  },
+  mounted() {
+    this.state.currentPage = this.$router.currentRoute.name || ''
   },
   methods: {
     handleClose() {

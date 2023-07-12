@@ -33,7 +33,7 @@ export const normalRoute: RouteConfig[] = [
     children: [
       {
         path: '',
-        name: 'ArticleDetails',
+        name: 'Details',
         meta: {
           title: '文章详情',
           icon: 'user',
@@ -41,10 +41,8 @@ export const normalRoute: RouteConfig[] = [
         },
         components: {
           main: () => import('@/views/article/ArticleDetails.vue'),
-          // left_aside: () =>
-          //   import('@/layout/components/Sidebar/DetailsLeftAside.vue'),
-          // right_aside: () =>
-          //   import('@/layout/components/Sidebar/DetailsRightAside.vue'),
+          left: () => import('@/views/article/ArticleDetailLeftAside.vue'),
+          right: () => import('@/views/article/ArticleDetailRightAside.vue'),
         },
       },
     ],

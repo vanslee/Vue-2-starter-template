@@ -6,9 +6,10 @@ import MenuVue from '@/components/menu/Menu.vue'
 import { hasLogin } from '@/utils/accessToken'
 import { useUserStore } from '@/stores/user'
 import DrawerVue from '@/components/draw/index.vue'
-
+import OutLine from '@/components/outline/index.vue'
 export default {
   components: {
+    OutLine,
     MenuVue,
     DrawerVue,
   },
@@ -16,6 +17,7 @@ export default {
     const activeIndex = '1'
     const userStore = useUserStore()
     return {
+      currentPageName: '',
       userStore,
       activeIndex,
       HeaderLeftMenu,
@@ -29,11 +31,18 @@ export default {
       return hasLogin()
     },
   },
-  created() { },
+  created() {
+    this.currentPageName = this.$router.currentRoute.name || ''
+  },
   methods: {
     ...mapActions(useUserStore, ['logout']),
     showDrawer() {
-      this.$refs.drawerRef.showVisible()
+      if (this.currentPageName === 'Details')
+        this.$refs.outLineRef?.showVisible()
+
+      else
+        this.$refs.drawerRef?.showVisible()
+
       // console.error(this.$refs.drawerRef)
     },
     // logout() {
@@ -53,10 +62,14 @@ export default {
       <MenuVue :data="HeaderRightMenu" mode="horizontal" />
     </div>
     <div class="mobile hidden-sm-and-up">
-      <i class="el-icon-s-operation" @click="showDrawer" />
+      <div style="align-items: center;">
+        <span style="margin-right: 10px;">首页</span>
+        <i class="el-icon-s-operation" @click="showDrawer" />
+      </div>
       litubao
       <span>登录</span>
     </div>
+    <OutLine ref="outLineRef" />
     <DrawerVue ref="drawerRef" :data="IndexLeftAside" />
   </div>
 </template>

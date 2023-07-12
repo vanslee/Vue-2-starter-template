@@ -21,7 +21,7 @@ export default {
   mounted() { },
   methods: {
     jumpToArticleDetails() {
-      this.$router.push({ name: 'Article', params: { id: this.article.id } })
+      this.$router.push({ name: 'Details', params: { id: this.article.id } })
     },
   },
 }
