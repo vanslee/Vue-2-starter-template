@@ -41,7 +41,8 @@ export default {
     color: $regular_color
   }
   .left-aside {
-    margin-left: 10px;
+    width: 25%;
+    margin-left: 40%;
     display: flex;
     justify-content: center;
   }

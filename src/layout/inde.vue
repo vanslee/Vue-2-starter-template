@@ -44,7 +44,7 @@ export default {
       >
         <RouterView name="left" />
       </aside>
-      <content style="width: 100%; padding: 0 5vw">
+      <content style="width: 100%; padding: 0 2vw">
         <RouterView name="main" />
       </content>
       <aside

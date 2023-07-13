@@ -7,11 +7,13 @@ import { hasLogin } from '@/utils/accessToken'
 import { useUserStore } from '@/stores/user'
 import DrawerVue from '@/components/draw/index.vue'
 import OutLine from '@/components/outline/index.vue'
+import UserToolTip from '@/components/tooltips/index.vue'
 export default {
   components: {
     OutLine,
     MenuVue,
     DrawerVue,
+    UserToolTip,
   },
   data() {
     const activeIndex = '1'
@@ -59,7 +61,10 @@ export default {
   <div class="Header">
     <div class="pc hidden-xs-only">
       <MenuVue :data="HeaderLeftMenu" mode="horizontal" />
-      <MenuVue :data="HeaderRightMenu" mode="horizontal" />
+
+      <!-- <UserToolTip v-if="hasLogin" /> -->
+      <UserToolTip />
+      <!-- <MenuVue :data="HeaderRightMenu" mode="horizontal" /> -->
     </div>
     <div class="mobile hidden-sm-and-up">
       <div style="align-items: center;">

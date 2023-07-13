@@ -14,16 +14,20 @@ import {
   MenuItemGroup,
   Message,
   Pagination,
+  Popover,
   RadioButton,
   RadioGroup,
   Submenu,
   Timeline,
   TimelineItem,
+  Tooltip,
 } from 'element-ui'
 Vue.use(Link)
 Vue.use(Card)
 Vue.use(Menu)
 Vue.use(Input)
+Vue.use(Popover)
+Vue.use(Tooltip)
 Vue.use(Image)
 Vue.use(Drawer)
 Vue.use(Divider)
