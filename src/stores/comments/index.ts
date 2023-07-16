@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 // import { loginApi, userInfoApi, logoutApi } from '@/apis/user'
 import { getCommentBriefApi, publishCommentApi } from '@/apis/comment'
+import type { Result } from '@/types/Result'
 export const useCommentStore = defineStore('comment', {
   // 开启持久化
   persist: false,
@@ -19,13 +20,12 @@ export const useCommentStore = defineStore('comment', {
         this.total = data.total
       }
     },
-    async submitComment(params: any) {
+    async submitComment(params: any): Promise<Result> {
       const { code } = await publishCommentApi(params)
       if (code === 200)
-        return true
-
+        return Promise.resolve({ code: 200 })
       else
-        return false
+        return Promise.resolve({ code: 500 })
     },
   },
 })

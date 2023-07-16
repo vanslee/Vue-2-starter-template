@@ -4,6 +4,7 @@ import CommentItemVue from './components/CommentItem.vue'
 import CommentVue from './components/Comment.vue'
 import { useUserStore } from '@/stores/user'
 import { useCommentStore } from '@/stores/comments'
+import { hasLogin } from '@/utils/accessToken'
 
 export default {
   name: 'CommentIndex',
@@ -35,8 +36,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(useUserStore, ['user', 'hasLogin']),
+    ...mapState(useUserStore, ['user']),
     ...mapState(useCommentStore, ['comments', 'total']),
+    hasLogin() {
+      return hasLogin()
+    },
   },
   created() {},
   mounted() {
@@ -54,7 +58,7 @@ export default {
 
 <template>
   <div>
-    <CommentVue />
+    <CommentVue :article-id="articleId" />
     <div
       v-for="comment in comments"
       :key="comment.id"

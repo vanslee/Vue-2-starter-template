@@ -13,20 +13,25 @@ function addZero(num: number): string {
   return num < 10 ? `0${num}` : JSON.stringify(num)
 }
 
-export function formatTime(timestamp: number) {
-  const now = new Date() // 当前时间
-  const target = new Date(timestamp * 1000) // 目标时间，这里使用一个固定的时间作为示例
-  const diff = now.getTime() - target.getTime() // 计算当前时间与目标时间的差距，单位为毫秒
-  if (diff > 12 * 60 * 60 * 1000) {
-    // 如果差距超过 12 小时
-    const year = target.getFullYear()
-    const month = target.getMonth() + 1
-    const day = target.getDate()
-    return `${year}年${month}月${day}日`
+export function formatTime(timestamp: number): string {
+  const now = Date.now() / 1000
+  const diff = now - timestamp
+
+  // 计算时间差的单位和数量
+  const units: { [unit: string]: number } = {
+    年前: 60 * 60 * 24 * 365,
+    月前: 60 * 60 * 24 * 30,
+    天前: 60 * 60 * 24,
+    小时前: 60 * 60,
+    分钟前: 60,
   }
-  else {
-    // 否则显示小时数
-    const hours = Math.floor(diff / (60 * 60 * 1000)) // 计算小时数
-    return `${hours}小时前`
+
+  for (const unit in units) {
+    if (diff > units[unit]) {
+      const count = Math.floor(diff / units[unit])
+      return `${count}${unit}`
+    }
   }
+
+  return '刚刚'
 }

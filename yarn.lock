@@ -4545,6 +4545,11 @@
   "resolved" "https://registry.npmmirror.com/util-deprecate/-/util-deprecate-1.0.2.tgz"
   "version" "1.0.2"
 
+"v-contextmenu@^2.9.0":
+  "integrity" "sha512-8FnZXOfELGvfX9Zv8mmdmsxpZzS83kSS6eNyxMekHN+yo1+cZM2oeKOdpLH/Rs/n2LSJkhfxxzgS6EeGGRQyVA=="
+  "resolved" "https://registry.npmmirror.com/v-contextmenu/-/v-contextmenu-2.9.0.tgz"
+  "version" "2.9.0"
+
 "v-emoji-picker@^2.3.3":
   "integrity" "sha512-GLuBowVCwKjGRVQ+DJvP6SVFhLIlyvQTBgwlrBuwPX7wt7xi+fdWxmFtyJDBEp/2/xI1aS6Y2lXvse9Cf2vIzA=="
   "resolved" "https://registry.npmmirror.com/v-emoji-picker/-/v-emoji-picker-2.3.3.tgz"
@@ -4611,6 +4616,11 @@
     "lodash" "^4.17.21"
     "semver" "^7.3.6"
 
+"vue-infinite-scroll@^2.0.2":
+  "integrity" "sha512-n+YghR059YmciANGJh9SsNWRi1YZEBVlODtmnb/12zI+4R72QZSWd+EuZ5mW6auEo/yaJXgxzwsuhvALVnm73A=="
+  "resolved" "https://registry.npmmirror.com/vue-infinite-scroll/-/vue-infinite-scroll-2.0.2.tgz"
+  "version" "2.0.2"
+
 "vue-lazyload@^1.2.4":
   "integrity" "sha512-t4bQjeHib98xmsQjxRI8rwuyNrJOKlaNS5QjVaDNRlIKq3FRd2QQw2zFxvLMlSE2O6dARFlE6juvGQBcKQQNfQ=="
   "resolved" "https://registry.npmmirror.com/vue-lazyload/-/vue-lazyload-1.2.4.tgz"
@@ -4626,6 +4636,11 @@
   "resolved" "https://registry.npmmirror.com/vue-router/-/vue-router-3.6.5.tgz"
   "version" "3.6.5"
 
+"vue-runtime-helpers@^1.1.2":
+  "integrity" "sha512-pZfGp+PW/IXEOyETE09xQHR1CKkR9HfHZdnMD/FVLUNI+HxYTa82evx5WrF6Kz4s82qtqHvMZ8MZpbk2zT2E1Q=="
+  "resolved" "https://registry.npmmirror.com/vue-runtime-helpers/-/vue-runtime-helpers-1.1.2.tgz"
+  "version" "1.1.2"
+
 "vue-template-compiler@^2.6.11", "vue-template-compiler@^2.6.12", "vue-template-compiler@^2.7.14":
   "integrity" "sha512-zyA5Y3ArvVG0NacJDkkzJuPQDF8RFeRlzV2vLeSnhSpieO6LK2OVbdLPi5MPPs09Ii+gMO8nY4S3iKQxBxDmWQ=="
   "resolved" "https://registry.npmmirror.com/vue-template-compiler/-/vue-template-compiler-2.7.14.tgz"
@@ -4639,7 +4654,7 @@
   "resolved" "https://registry.npmmirror.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@*", "vue@^2.0.0", "vue@^2.5.17", "vue@^2.6.11", "vue@^2.6.14 || ^3.3.0", "vue@^2.7.0-0", "vue@^2.7.14", "vue@^3.0.0-0 || ^2.6.0", "vue@2 || 3":
+"vue@*", "vue@^2.0.0", "vue@^2.5.0", "vue@^2.5.17", "vue@^2.6.11", "vue@^2.6.14 || ^3.3.0", "vue@^2.7.0-0", "vue@^2.7.14", "vue@^3.0.0-0 || ^2.6.0", "vue@2 || 3":
   "integrity" "sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ=="
   "resolved" "https://registry.npmmirror.com/vue/-/vue-2.7.14.tgz"
   "version" "2.7.14"

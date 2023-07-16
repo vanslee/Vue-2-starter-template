@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { Message, Notification } from 'element-ui'
-import type { User } from '@/types/User'
+import type { UserRecorc } from '@/types/User'
 import type { Result } from '@/types/Result'
 import {
   removeAccessToken,
@@ -9,13 +9,12 @@ import {
 import { loginApi, logoutApi, updateUserInfoApi, userInfoApi } from '@/apis/user'
 import setting from '@/config'
 
-import router from '@/router'
 export const useUserStore = defineStore('user', {
   // 开启持久化
   persist: true,
   // 定义state
   state: () => ({
-    user: {} as User,
+    user: {} as UserRecorc,
   }),
   getters: {},
   actions: {
@@ -64,8 +63,8 @@ export const useUserStore = defineStore('user', {
     async logout() {
       const { code } = await logoutApi()
       if (code === 200) {
+        location.reload()
         removeAccessToken()
-        router.push({ name: 'Login' })
         this.$reset()
         return true
       }
@@ -83,7 +82,6 @@ export const useUserStore = defineStore('user', {
       const { code, msg } = await updateUserInfoApi(this.user)
       if (code === 200)
         Message.success('修改成功')
-
       else
         Message.error(msg)
     },

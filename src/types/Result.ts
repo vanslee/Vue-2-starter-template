@@ -1,5 +1,5 @@
 export interface Result {
   msg: string
-  data: any
+  data?: any
   code: number
 }

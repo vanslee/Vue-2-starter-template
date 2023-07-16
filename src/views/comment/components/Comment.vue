@@ -1,14 +1,23 @@
 <script>
-import { mapState } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 import { useUserStore } from '@/stores/user'
+import { useCommentStore } from '@/stores/comments'
+import { hasLogin } from '@/utils/accessToken'
+
 export default {
   name: 'CommentComp',
+  props: {
+    articleId: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
     const userStore = useUserStore()
     const commentParam = {
       content: '',
       user_id: userStore.user.id,
-      article_id: this.article_id,
+      article_id: this.articleId,
       user_nick: userStore.user.username,
       user_avatar: userStore.user.avatarImgUrl,
     }
@@ -18,18 +27,22 @@ export default {
     }
   },
   computed: {
-    ...mapState(useUserStore, ['user', 'hasLogin']),
+    ...mapState(useUserStore, ['user']),
+    hasLogin() {
+      return hasLogin()
+    },
   },
   created() {},
   methods: {
+    ...mapActions(useCommentStore, ['submitComment', 'fetchData']),
     selectRootEmoji(emoji) {
       this.emojiRootVisible = false
       this.commentParam.content = `${this.commentParam.content}${emoji.data}`
     },
-    submit() {
+    async submit() {
       this.isLoading = true
-      const success = this.submitComment(this.commentParam)
-      if (success) {
+      const { code } = await this.submitComment(this.commentParam)
+      if (code === 200) {
         this.$message.success('发送成功')
         this.fetchData(this.params)
       }
@@ -45,7 +58,7 @@ export default {
 
 <template>
   <div>
-    <el-divider><i class="el-icon-s-comment"></i></el-divider>
+    <el-divider><i class="el-icon-s-comment" /></el-divider>
     <div
       style="display: flex; justify-content: space-between; align-items: center"
     >
@@ -53,12 +66,10 @@ export default {
         <img
           v-if="hasLogin"
           v-lazy="user.avatarImgUrl"
-          style="width: 6vw"
         >
         <img
           v-else
           src="https://lidengxiang.top/default.jpg"
-          style="width: 6vw"
         >
       </div>
       <div style="flex-grow: 8; flex-shrink: 1; padding: 0 2vw">
@@ -79,8 +90,8 @@ export default {
           发表评论
         </el-button>
         <el-button
-        class="hidden-xs-only"
           v-else
+          class="hidden-xs-only"
           style="height: 10vh"
           disabled
         >

@@ -1,85 +1,44 @@
 <script>
+import { mapActions, mapState } from 'pinia'
 import { useArticleStore } from '@/stores/article'
-import { formatTimeStamp } from '@/utils/time'
+import { formatTime } from '@/utils/time'
 import ArticleCard from '@/views/article/ArticleCard.vue'
 export default {
   components: {
     ArticleCard,
   },
-  setup() {
-    const articleStore = useArticleStore()
+  data() {
     return {
-      articleStore,
-      params: {},
+      current: 0,
+      isLoading: { visible: false },
     }
   },
   computed: {
-    articles() {
-      return this.articleStore.articles
-    },
+    ...mapState(useArticleStore, ['articles']),
+
   },
   mounted() {
-    this.fetchData()
   },
   methods: {
+    ...mapActions(useArticleStore, ['getArticleList']),
     fetchData() {
-      this.articleStore.getArticleList()
+      this.getArticleList(this.current)
+      this.current++
     },
-    changePage() {
-      this.articleStore.getArticleList()
-    },
-    formatTimeStamp,
+    formatTime,
   },
 
 }
-// export default {
-//   components: {
-//     ArticleCard,
-//   },
-//   data() {
-//     const userStore = useUserStore()
-//     return {
-//       total: 0,
-//       userStore,
-//       formatTimeStamp,
-//     }
-//   },
-//   computed: {
-//     ...mapState(useArticleStore, ['articles', 'params']),
-//   },
-//   created() {
-//     this.getArticleList()
-//   },
-//   methods: {
-//     ...mapActions(useArticleStore, ['getArticleList']),
-//     async fetchData() {
-//       await this.getArticleList()
-//     },
-//     changePage(current) {
-//       this.params.current = current
-//       this.fetchData()
-//     },
-//   },
-// }
 </script>
 
 <template>
-  <div class="scorll-wrapper">
-    <el-timeline style="padding: 0">
-      <el-timeline-item
-        v-for="article in articles" :key="article.id" :timestamp="formatTimeStamp(article.publishDate)"
-        placement="top"
-      >
-        <el-card :body-style="{ padding: '10px' }">
-          <ArticleCard :article="article" />
-        </el-card>
-      </el-timeline-item>
-    </el-timeline>
-    <el-pagination
-      class="pagination" background layout="prev, pager, next" :total="params.total" :page-size="params.size"
-      @current-change="changePage"
-    />
-  </div>
+  <ul v-infinite-scroll="fetchData" :infinite-scroll-delay="200" :infinite-scroll-immediate="false" :infinite-scroll-distance="0" class="scorll-wrapper">
+    <li v-for="article in articles" :key="article.id">
+      <el-card :body-style="{ padding: '10px' }">
+        <ArticleCard :article="article" />
+      </el-card>
+    </li>
+  </ul>
 </template>
 
   <style scoped>

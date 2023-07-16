@@ -7,8 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CreatorButton: typeof import('./components/creator-button/index.vue')['default']
     Draw: typeof import('./components/draw/index.vue')['default']
     Menu: typeof import('./components/menu/Menu.vue')['default']
+    Note: typeof import('./components/note/index.vue')['default']
     Outline: typeof import('./components/outline/index.vue')['default']
     Preview: typeof import('./components/markdown/Preview.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

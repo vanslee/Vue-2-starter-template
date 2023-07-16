@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import { Article, Page } from '@/types/Article'
+import { Loading } from 'element-ui'
+import { type ArticleRecord, Page } from '@/types/Article'
 import {
   deleteAritcleApi,
   getArticleCategoriesApi,
@@ -15,10 +16,12 @@ import {
 export const useArticleStore = defineStore('article', {
   // other options...
   state: () => ({
-    articles: [],
+    hadMore: true,
+    articles: [] as Array<ArticleRecord>,
     author: {},
+    isLoading: {} as any,
     titles: new Array<string>(),
-    article: new Article(),
+    article: {} as ArticleRecord,
     tagsIpage: {},
     categoriesIpage: {},
     params: new Page(),
@@ -45,7 +48,7 @@ export const useArticleStore = defineStore('article', {
       else
         return false
     },
-    async getArticleDetails(articleId: number) {
+    async getArticleDetails(articleId: string) {
       const { code, data } = await getArticleDetailsApi(articleId)
       if (code === 200) {
         this.author = data.author
@@ -71,12 +74,32 @@ export const useArticleStore = defineStore('article', {
       if (code === 200)
         this.categoriesIpage = data
     },
-    async getArticleList() {
-      const { data } = await getArticleListApi(this.params)
-      this.articles = data.records
-      this.params.total = data.total
-      this.params.current = data.current
-      this.params.size = data.size
+    async getArticleList(current = 0) {
+      console.error(this.params)
+
+      if (this.hadMore) {
+        if (!this.isLoading.visible) {
+          this.isLoading = Loading.service({
+            lock: true,
+            text: '加载中。。。',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.7)',
+            fullscreen: true,
+          })
+
+          this.params.current = current
+          const { data } = await getArticleListApi(this.params)
+          if (data.records.length < 1)
+            this.hadMore = false
+          this.articles = [...this.articles, ...data.records]
+          this.params.total = data.total
+          this.params.current = data.current
+          this.params.size = data.size
+          setTimeout(() => {
+            this.isLoading.close()
+          }, 300)
+        }
+      }
     },
     async handleCurrentChange(current: number) {
       this.params.current = current

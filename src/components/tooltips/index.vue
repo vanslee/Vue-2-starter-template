@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 import { useUserStore } from '@/stores/user'
 import { ToolTips } from '@/components/menu/mock/menu'
 export default {
@@ -16,12 +16,16 @@ export default {
   created() {
   },
   methods: {
+    ...mapActions(useUserStore, ['logout']),
+    jumpPath(path) {
+      this.$router.push({ path })
+    },
   },
 }
 </script>
 
 <template>
-  <el-popover effect="light" trigger="click">
+  <el-popover effect="light" trigger="click" width="250">
     <div class="page-box">
       <div class="userinfo">
         <img
@@ -51,13 +55,13 @@ export default {
       <el-divider />
       <div class="content">
         <div v-for="item in ToolTips" :key="item.title" class="content-item">
-          <i :class="item.icon">{{ item.title }}</i>
+          <i :class="item.icon" class="pointer" @click="jumpPath(item.path)">{{ item.title }}</i>
         </div>
       </div>
       <el-divider />
       <div class="footer">
-        <span>我的设置</span>
-        <span>退出登录</span>
+        <span class="pointer">我的设置</span>
+        <span class="pointer" @click="logout">退出登录</span>
       </div>
     </div>
     <template #reference>
@@ -76,6 +80,9 @@ export default {
   height: $avatar-height;
   border-radius: 50%;
 }
+.pointer {
+  cursor: pointer;
+}
 .userinfo {
   display: flex;
   align-items: center;
@@ -85,7 +92,9 @@ export default {
   }
 }
 .page-box {
+  margin: 0;
   padding: 10px;
+  width: 100%;
   .user-panel {
     display: flex;
     justify-content: space-around;
@@ -98,7 +107,7 @@ export default {
   .footer {
     display: flex;
     justify-content: space-between;
-    font-size: $font_samll;
+    font-size: $font_small;
   }
   // width: 20%;
   // height: 20vh;

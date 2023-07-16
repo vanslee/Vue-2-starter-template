@@ -39,13 +39,13 @@ export default {
         if (!Array.isArray(this.items))
           this.items = []
 
-        this.$emit(['setItems'], this.inputVal)
+        this.$emit('setItems', this.inputVal)
         this.inputVal = ''
         this.inputVisible = false
       }
     },
     removeItem(value) {
-      this.$emit(['rmItem'], value)
+      this.$emit('rmItem', value)
       this.inputVal = ''
     },
   },
@@ -67,11 +67,11 @@ export default {
     </el-tag>
     <div>
       <el-tag
-        v-for="(item, index) in data" :key="item + index" style="margin: 5px" closable :type="type"
-        @close="removeItem(item)"
+        v-for="item in data" :key="item.name + item.id" style="margin: 5px" closable :type="type"
+        @close="removeItem(item.id)"
       >
         <i class="iconfont" :class="icon" />
-        {{ item }}
+        {{ item.name }}
       </el-tag>
     </div>
   </div>

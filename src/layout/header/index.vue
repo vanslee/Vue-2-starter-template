@@ -8,6 +8,7 @@ import { useUserStore } from '@/stores/user'
 import DrawerVue from '@/components/draw/index.vue'
 import OutLine from '@/components/outline/index.vue'
 import UserToolTip from '@/components/tooltips/index.vue'
+// import CreatorBtn from '@/components/creator-button/index.vue'
 export default {
   components: {
     OutLine,
@@ -27,32 +28,25 @@ export default {
       IndexLeftAside,
     }
   },
+  watch: {
+    $route() {
+      this.currentPageName = this.$router.currentRoute.name || ''
+    },
+  },
   computed: {
     ...mapState(useUserStore, ['user']),
     hasLogin() {
       return hasLogin()
     },
   },
-  created() {
-    this.currentPageName = this.$router.currentRoute.name || ''
-  },
   methods: {
     ...mapActions(useUserStore, ['logout']),
     showDrawer() {
       if (this.currentPageName === 'Details')
         this.$refs.outLineRef?.showVisible()
-
       else
         this.$refs.drawerRef?.showVisible()
-
-      // console.error(this.$refs.drawerRef)
     },
-    // logout() {
-    //   const sucess = this.userStore.logout()
-    //   if (sucess) {
-    //     this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-    //   }
-    // }
   },
 }
 </script>
@@ -61,18 +55,22 @@ export default {
   <div class="Header">
     <div class="pc hidden-xs-only">
       <MenuVue :data="HeaderLeftMenu" mode="horizontal" />
-
-      <!-- <UserToolTip v-if="hasLogin" /> -->
-      <UserToolTip />
-      <!-- <MenuVue :data="HeaderRightMenu" mode="horizontal" /> -->
+      <!-- <CreatorBtn /> -->
+      <UserToolTip v-if="hasLogin" />
+      <MenuVue v-else :data="HeaderRightMenu" mode="horizontal" />
     </div>
     <div class="mobile hidden-sm-and-up">
       <div style="align-items: center;">
-        <span style="margin-right: 10px;">首页</span>
         <i class="el-icon-s-operation" @click="showDrawer" />
+        <RouterLink v-show="currentPageName !== 'Index'" style="margin-left: 20px" to="/">
+          首页
+        </RouterLink>
       </div>
       litubao
-      <span>登录</span>
+      <UserToolTip v-if="hasLogin" />
+      <RouterLink v-else to="/login">
+        登录
+      </RouterLink>
     </div>
     <OutLine ref="outLineRef" />
     <DrawerVue ref="drawerRef" :data="IndexLeftAside" />
@@ -83,11 +81,15 @@ export default {
   /* el-submenu__icon-arrow el-icon-arrow-down */
 .Header {
   div{
-    justify-content: space-between;
+    justify-content: space-around;
     display: flex;
+  }
+  .pc {
+    align-items: center;
   }
   .mobile {
     padding: 10px;
+    align-items: center;
   }
   height: 100%;
   width: 100%;

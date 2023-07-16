@@ -81,7 +81,7 @@ export default {
     justify-content: center;
     .personal-brief {
       color: $regular_color;
-      font-size: $font_samll;
+      font-size: $font_small;
     }
   }
 }

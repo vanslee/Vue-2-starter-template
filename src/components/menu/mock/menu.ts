@@ -1,5 +1,5 @@
 export interface MenuStruct {
-  title?: string
+  title: string
   icon?: string
   children: Array<MenuStruct>
   path?: string
@@ -148,13 +148,127 @@ export const ToolTips: Array<MenuStruct> = [
     children: [],
   },
   {
-    title: '闪念笔记',
+    title: '写博客',
+    icon: 'el-icon-notebook-1',
+    path: '/write',
+    children: [],
+  },
+  {
+    title: '会员中心',
+    icon: 'el-icon-trophy',
+    path: '',
+    children: [],
+  },
+  {
+    title: '课程中心',
+    icon: 'el-icon-trophy',
+    path: '',
+    children: [],
+  },
+  {
+    title: '我的优惠',
+    icon: 'el-icon-trophy',
+    path: '',
+    children: [],
+  },
+  {
+    title: '我的报名',
+    icon: 'el-icon-trophy',
+    path: '',
+    children: [],
+  },
+  {
+    title: '我的足迹',
+    icon: 'el-icon-trophy',
+    path: '',
+    children: [],
+  },
+]
+export const UnderlineWord: Array<MenuStruct> = [
+  {
+    title: '复制',
+    icon: 'el-icon-user',
+    path: '',
+    children: [],
+  },
+  {
+    title: '马克笔',
+    icon: 'el-icon-present',
+    path: '',
+    children: [],
+  },
+  {
+    title: '波浪线',
     icon: 'el-icon-notebook-1',
     path: '',
     children: [],
   },
   {
-    title: '会员中心',
+    title: '直线',
+    icon: 'el-icon-trophy',
+    path: '',
+    children: [],
+  },
+  {
+    title: '写想法',
+    icon: 'el-icon-trophy',
+    path: '',
+    children: [],
+  },
+]
+export const ArticleDetails: Array<MenuStruct> = [
+  {
+    title: 'views',
+    icon: 'el-icon-view',
+    path: '',
+    children: [],
+  },
+  {
+    title: 'likes',
+    icon: 'el-icon-orange',
+    path: '',
+    children: [],
+  },
+  {
+    title: 'comments',
+    icon: 'el-icon-chat-square',
+    path: '',
+    children: [],
+  },
+  {
+    title: 'collects',
+    icon: 'el-icon-trophy',
+    path: '',
+    children: [],
+  },
+]
+export const CreatorDropdownItems: Array<MenuStruct> = [
+  {
+    title: '写文章',
+    icon: 'el-icon-view',
+    path: '/write',
+    children: [],
+  },
+  {
+    title: '发沸点',
+    icon: 'el-icon-orange',
+    path: '',
+    children: [],
+  },
+  {
+    title: '写笔记',
+    icon: 'el-icon-chat-square',
+    path: '',
+    children: [],
+  },
+  {
+    title: '写代码',
+    icon: 'el-icon-trophy',
+    path: '',
+    children: [],
+  },
+  {
+    title: '草稿箱',
     icon: 'el-icon-trophy',
     path: '',
     children: [],
